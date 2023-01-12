@@ -119,6 +119,57 @@ async function deleteFavoriteDog(id) {
         loadFavoriteDogs();
     }
 }
+/************** UPLOAD IMAGE WITH DROP ZONE */
+
+document.getElementById('add-image-input').addEventListener('change', (event) => {
+    window.selectedFile = event.target.files[0];
+    // document.getElementById('file_name').innerHTML = window.selectedFile.name;
+        fileName.innerHTML = window.selectedFile.name;
+        fileName.style.display = 'inline-block';
+
+        loadImagePreview(window.selectedFile);
+});
+
+document.getElementById('upload-image-btn').addEventListener('click', (event) => {
+    if (window.selectedFile !== undefined) {
+        uploadFile(window.selectedFile);
+    } else {
+        fileName.innerHTML = "*No file has been selected.";
+        fileName.style.color = "crimson";
+        fileName.style.display = "block";
+    }
+});
+
+if (window.FileList && window.File) {
+    dropZone.addEventListener('dragover', event => {
+        event.stopPropagation();
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'copy';
+    });
+
+    dropZone.addEventListener('drop', event => {
+        event.stopPropagation();
+        event.preventDefault();
+        const files = event.dataTransfer.files;
+        window.selectedFile = files[0];
+        fileName.innerHTML = window.selectedFile.name;
+        fileName.style.display = 'inline-block';
+
+        loadImagePreview(window.selectedFile);
+    });
+}
+
+function loadImagePreview(file) {
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+        dropZoneIcon.style.display = "none";
+        dropZoneText.style.display = "none";
+        dropZoneImage.src = reader.result;
+        dropZoneImage.style.display = 'block';
+    }
+}
 
 async function uploadFile(file) {
     var formData = new FormData();
@@ -147,3 +198,8 @@ async function uploadFile(file) {
     }
 }
 
+function resetDropZone() {
+    dropZoneImage.style.display = "none";
+    dropZoneIcon.style.display = "flex";
+    dropZoneText.style.display = "inline-block";
+}
