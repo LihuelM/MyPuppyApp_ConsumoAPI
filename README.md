@@ -1,7 +1,7 @@
 # MyPuppyApp_ConsumoAPI
 🐶🐩🐕‍🦺
 
-Proyecto realizado como desafío del curso de Consumo de API REST de JavaScript
+Este proyecto, se realiza a partir del primer curso de una saga de cursos de consumo de API con JavaScript. En él, se trabajan con los fundamentos del consumo de API, haciendo mis primeras solicitudes asíncronas usando fetch. 
 
 ------------
 
