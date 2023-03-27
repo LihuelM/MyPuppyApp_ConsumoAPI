@@ -27,7 +27,7 @@ body {
 header {
     margin: 20px 40px;
     padding: 24px 48px;
-    max-width: 1400px;
+    /* max-width: 1400px; */
     text-align: center;
     box-shadow: 0 4px 8px 0 #B1ABB9, 0 6px 20px 0 #B1ABB9;
     border-radius: 20px;
